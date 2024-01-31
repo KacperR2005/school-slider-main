@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="300">
+    <title>zszdzrzeszow</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <img src="https://zszdz.rzeszow.pl/images/glowne/12-5980.jpg" alt="" />
+      <div class="kontakt">
+        <p><img src="https://zszdz.rzeszow.pl/templates/0330/images/top_contact_mail.png" alt="Nasz adres e-mail"> szkola@zszdz.rzeszow.pl    
+        <img src="https://zszdz.rzeszow.pl/templates/0330/images/top_contact_phone.png" alt="Ikona telefonu"> +48 510 998 031 </p>
+      </div>
+     
+    </header>
+    <main>
+      <div class="slider">
+        <div class="slides"></div>
+      </div>
+      <script>
+        function checkForMedia() {
+          const photosFolder = './zdjecia/';
+          const videosFolder = './filmy/';
+        
+          fetch(photosFolder)
+            .then((response) => response.text())
+            .then((html) => {
+              const parser = new DOMParser();
+              const docPhotos = parser.parseFromString(html, 'text/html');
+              const photos = docPhotos.querySelectorAll(
+                'a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".gif"], a[href$=".webp"]'
+              );
+        
+              fetch(videosFolder)
+                .then((response) => response.text())
+                .then((html) => {
+                  const docVideos = parser.parseFromString(html, 'text/html');
+                  const videos = docVideos.querySelectorAll(
+                    'a[href$=".mp4"], a[href$=".avi"], a[href$=".mov"], a[href$=".wmv"]'
+                  );
+        
+                  if (photos.length > 0) {
+                    window.location.href = "index 2.html";
+                    return;
+                  } else if (videos.length > 0) {
+                    window.location.href = "index 3.html";
+                    return;
+                  } else {
+                    loadImages();
+                  }
+                })
+                .catch((error) => console.error(error));
+            })
+            .catch((error) => console.error(error));
+        }
+        
+        function loadImages() {
+          const sliderDiv = document.querySelector('.slides');
+          const imagesFolder = './plakaty/';
+        
+          fetch(imagesFolder)
+            .then((response) => response.text())
+            .then((html) => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const images = doc.querySelectorAll(
+                'a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".gif"], a[href$=".webp"]'
+              );
+        
+              if (images.length === 0) {
+                for (let i = 0; i < 5; i++) {
+                  const noImagesDiv = document.createElement('div');
+                  noImagesDiv.textContent =
+                    'Samorząd zapomniał umieścić plakatów 👋🏻';
+                  noImagesDiv.style.width = '500px';
+                  noImagesDiv.style.textAlign = 'center';
+                  sliderDiv.appendChild(noImagesDiv);
+                }
+              } else {
+                for (let i = 0; i < 5; i++) {
+                  const slideDiv = document.createElement('div');
+                  slideDiv.classList.add('slide');
+        
+                  const img = document.createElement('img');
+                  img.src =
+                    `./plakaty/` + images[i % images.length].getAttribute('href');
+                  img.alt = '';
+                  slideDiv.appendChild(img);
+        
+                  sliderDiv.appendChild(slideDiv);
+                }
+              }
+            })
+            .catch((error) => console.error(error));
+        }
+        
+        checkForMedia();
+        
+        </script>
+         <div class="instagram"> 
+          <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+          <div class="elfsight-app-28be887b-5f0a-41a7-b699-2ef5b3828bf8"></div>
+          </div>
+              </main>
+              <footer>
+                <div class="clock-container">
+                  <img
+                    src="https://www.svgrepo.com/show/71605/clock.svg"
+                    alt=""
+                    width="35"
+                    height="35"
+                    style="margin-top: 4px;margin-left: 4px;"
+                  />
+                  <p id="datetime" ></p>
+                  </div>
+                  <script>
+                    function updateDateTime() {
+                      var today = new Date()
+                      var date =
+                        today.getDate().toString().padStart(2, '0') +
+                        '/' +
+                        (today.getMonth() + 1).toString().padStart(2, '0') +
+                        '/' +
+                        today.getFullYear()
+          
+                      var time =
+                        today.getHours().toString().padStart(2, '0') +
+                        ':' +
+                        today.getMinutes().toString().padStart(2, '0')
+          
+                      var dateTime = time + ' ' + date
+                      document.getElementById('datetime').innerHTML = dateTime
+                    }
+          
+                    updateDateTime() // Wywołanie funkcji po załadowaniu strony
+          
+                    // Aktualizuj datę i godzinę co sekundę
+                    setInterval(updateDateTime, 1000)
+                  </script>
+                <div class="marquee">
+                  <div class="marquee__content">
+                    <p class="kumunikaty" />
+                  </div>
+                  <div class="marquee__content">
+                    <p aria-hidden="true" class="kumunikaty" />
+                  </div>
+                </div>
+                
+                <script>
+                 fetch('komunikaty.txt?_=' + new Date().getTime())
+                    .then((response) => response.text())
+                    .then((data) => {
+                      const p = document.getElementsByClassName('kumunikaty')
+                      for (let i = 0; i < p.length; i++) {
+                        p[i].textContent = data
+                      }
+                    })
+                    .catch((error) => console.error(error))
+                </script>
+                 
+              
+       
+    
+      </div>
+    </footer>
+    <div class="copyriht" style="width: 1400px; padding-right:16px;font-family: 'Open Sans', sans-serif;">
+    <p style=" font-size: 15px; text-align: right;">Copyright by: zszdz.rzeszow.pl 2023 ©   💻code by: Kacper Rusinek</p>
+  </div>
+  </body>
+</html>

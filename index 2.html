@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="300">
+    <title>zszdzrzeszow</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles3.css" />
+  </head>
+  <body>
+    <header>
+      <img src="./assets/12-5980.jpg" alt="" />
+      <div class="kontakt">
+        <p><img src="https://zszdz.rzeszow.pl/templates/0330/images/top_contact_mail.png" alt="Nasz adres e-mail"> szkola@zszdz.rzeszow.pl    
+        <img src="https://zszdz.rzeszow.pl/templates/0330/images/top_contact_phone.png" alt="Ikona telefonu"> +48 510 998 031 </p>
+      </div>
+     
+    </header>
+    <main>  
+      <img id="slider1" src="" alt="Ładowanie..." style="margin-left: auto;margin-right: auto; width: auto;height: 656px;">
+      <script src="slider.js"></script>
+
+              </main>
+              <footer>
+                <div class="clock-container">
+                  <img
+                    src="https://www.svgrepo.com/show/71605/clock.svg"
+                    alt=""
+                    width="35"
+                    height="35"
+                    style="margin-top: 4px; margin-left: 4px;"
+                  />
+                  <p id="datetime" ></p>
+          
+                  <script>
+                    function updateDateTime() {
+                      var today = new Date()
+                      var date =
+                        today.getDate().toString().padStart(2, '0') +
+                        '/' +
+                        (today.getMonth() + 1).toString().padStart(2, '0') +
+                        '/' +
+                        today.getFullYear()
+          
+                      var time =
+                        today.getHours().toString().padStart(2, '0') +
+                        ':' +
+                        today.getMinutes().toString().padStart(2, '0')
+          
+                      var dateTime = time + ' ' + date
+                      document.getElementById('datetime').innerHTML = dateTime
+                    }
+          
+                    updateDateTime() // Wywołanie funkcji po załadowaniu strony
+          
+                    // Aktualizuj datę i godzinę co sekundę
+                    setInterval(updateDateTime, 1000)
+                  </script>
+                <div class="marquee">
+                  <div class="marquee__content">
+                    <p class="kumunikaty" />
+                  </div>
+                  <div class="marquee__content">
+                    <p aria-hidden="true" class="kumunikaty" />
+                  </div>
+                </div>
+                
+                <script>
+                  fetch('komunikaty.txt?_=' + new Date().getTime())
+                    .then((response) => response.text())
+                    .then((data) => {
+                      const p = document.getElementsByClassName('kumunikaty')
+                      for (let i = 0; i < p.length; i++) {
+                        p[i].textContent = data
+                      }
+                    })
+                    .catch((error) => console.error(error))
+                </script>
+                 
+              
+       
+    
+      </div>
+    </footer>
+  </body>
+</html>

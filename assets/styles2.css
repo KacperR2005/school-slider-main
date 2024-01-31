@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gap: 2rem;
+  --duration: 30s;
+  --scroll-start: 0;
+  --scroll-end: calc(-100% - var(--gap));
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+header {
+  min-height: 52px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e4e4e4;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  background-image: url("https://zszdz.rzeszow.pl/templates/0330/images/top_bg.jpg");
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  background-position-x: 40%;
+  background-size: cover;
+ 
+}
+img {
+  object-fit: cover;
+}
+p {
+  font-size: 24px;
+}
+.instagram {
+  margin-right: 200px ;
+}
+.clock-container {
+  display: flex;
+  gap: 5px;
+  float: right;
+  text-align: center;
+  background-color: orange;
+}
+main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+footer {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  padding: 16px 16px 16px 12px;
+  overflow: hidden;
+}
+.marquee {
+  --gap: 1rem;
+  display: flex;
+  overflow: hidden;
+  background: rgb(228, 226, 224);
+  user-select: none;
+  gap: var(--gap);
+  float: right;
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 80%;
+  gap: var(--gap);
+  animation: scroll 10s linear infinite;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+.kontakt>p {
+color: wheat;
+position: relative;
+margin-right: 1 0px;
+
+}
+.kontakt>p>img {
+margin-left: 20px;
+  }
+  .kontakt>p>text {
+    margin-right: 20px;
+      }
+      .kontakt{
+        margin-right: 10%;
+        margin-top: 10px;
+      }
+      #datetime{
+        font-weight: bold;
+        font-size: 30px;
+        margin-right: 5px;
+      }
